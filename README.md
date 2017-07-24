@@ -1,4 +1,4 @@
-# api-errors
+# wcp-errors
 
 Package for normalizing api errors using the following format:
 
