@@ -1,0 +1,143 @@
+{
+  "name": "cdimascio/api-errors",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "",
+  "branch": "",
+  "style": {
+    "name": "Default",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/BannerHeader",
+      "article": "article/BasicArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "-apple-system, BlinkMacSystemFont, sans-serif",
+    "fontWeight": 400,
+    "bold": 600,
+    "lineHeight": 1.5,
+    "typeScale": [
+      72,
+      48,
+      24,
+      20,
+      16,
+      14,
+      12
+    ],
+    "monospace": "Menlo, monospace",
+    "heading": {
+      "fontFamily": null,
+      "fontStyle": null,
+      "fontWeight": 600,
+      "lineHeight": 1.25,
+      "textTransform": null,
+      "letterSpacing": null
+    },
+    "h0": {},
+    "h1": {},
+    "h2": {},
+    "h3": {},
+    "h4": {},
+    "h5": {},
+    "h6": {},
+    "alternativeText": {},
+    "space": [
+      0,
+      8,
+      16,
+      32,
+      48,
+      64,
+      96
+    ],
+    "layout": {
+      "maxWidth": 1024,
+      "centered": false
+    },
+    "colors": {
+      "text": "#111",
+      "background": "#fff",
+      "primary": "#08e",
+      "secondary": "#059",
+      "highlight": "#e08",
+      "border": "#ddd",
+      "muted": "#eee"
+    },
+    "border": {
+      "width": 1,
+      "radius": 2
+    },
+    "link": {},
+    "button": {
+      "hover": {
+        "boxShadow": "inset 0 0 0 999px rgba(0, 0, 0, .125)"
+      }
+    },
+    "input": {},
+    "body": {
+      "margin": 0
+    },
+    "breakpoints": {
+      "xs": "@media screen and (max-width:40em)",
+      "sm": "@media screen and (min-width:40em)",
+      "md": "@media screen and (min-width:52em)",
+      "lg": "@media screen and (min-width:64em)"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/cdimascio/api-errors",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/wcp-errors",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "api-errors",
+      "subhead": "",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "api-errors: ",
+          "url": null
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "cdimascio",
+          "repo": "api-errors"
+        }
+      ],
+      "text": "v1.0.0"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n<p>Package for normalizing api errors using the following format:</p>\n<p><em>(work in progress)</em></p>\n<pre>{\n  <span class=\"hljs-attr\">&quot;trace&quot;</span>: <span class=\"hljs-string\">&quot;w7vrpmm9479z2o0hxhex0ttgat4qv9ev&quot;</span>,\n  <span class=\"hljs-attr\">&quot;errors&quot;</span>: [\n    {\n      <span class=\"hljs-attr\">&quot;code&quot;</span>: <span class=\"hljs-string\">&quot;bad_request&quot;</span>,\n      <span class=\"hljs-attr\">&quot;message&quot;</span>: <span class=\"hljs-string\">&quot;The `first_name` field is required.&quot;</span>,\n      <span class=\"hljs-attr\">&quot;target&quot;</span>: {\n        <span class=\"hljs-attr\">&quot;type&quot;</span>: <span class=\"hljs-string\">&quot;field&quot;</span>,\n        <span class=\"hljs-attr\">&quot;name&quot;</span>: <span class=\"hljs-string\">&quot;first_name&quot;</span>\n      }\n    }\n  ]\n}</pre><h2>Install</h2>\n<pre>npm install api-errors</pre><h2>Usage</h2>\n<pre><span class=\"hljs-keyword\">const</span> { notFound } = <span class=\"hljs-built_in\">require</span>(<span class=\"hljs-string\">&apos;api-errors&apos;</span>);\n\nbyId(req, res, next) {\n    FindStuff.byId(req.params.id)\n      .then(<span class=\"hljs-function\"><span class=\"hljs-params\">r</span> =&gt;</span> {\n        <span class=\"hljs-keyword\">if</span> (r) res.json(r);\n        <span class=\"hljs-keyword\">else</span> res.json(notFound());\n      });\n  }</pre><h2>License</h2>\n<p>MIT</p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/cdimascio/api-errors",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/cdimascio",
+          "text": "cdimascio"
+        }
+      ]
+    }
+  ]
+}
