@@ -158,7 +158,7 @@ app.use(function(err, req, res, next) {
 
 ## Contributers
 
-Contributer are welcome! Please submit a PR.
+Contributers are welcome! Please submit a PR.
 
 ## License
 
