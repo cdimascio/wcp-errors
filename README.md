@@ -4,6 +4,7 @@ Package for normalizing api errors using the following format:
 
 ![](https://github.com/cdimascio/wcp-errors/blob/master/assets/error.png?raw=true)
 
+
 ## Install
 
 ```shell
@@ -139,7 +140,9 @@ const e = new ApiError({
 
 ## TODO
 
-Create dedicated Express middleware, such that a user does not have to write the fallback error handler middleware.
+- Create basic api functions for all http errors
+- Normalize basic apis with add api
+- Create dedicated Express middleware, such that a user does not have to write the fallback error handler middleware.
 
 ex:
 
