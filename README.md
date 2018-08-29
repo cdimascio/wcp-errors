@@ -63,31 +63,6 @@ Open a browser and run
 
 ## APIs
 
-### Raw
-
-The raw API is only necessary when multiple errors are to be returned in the wcp error response. For scenarios where a single error is to be returned, use the [Basic](#basic) Apis.
-
-```javascript
- const { ApiError } = require('wcp-errors');
-
-// Manually create a new API error
-const e = new ApiError({
-  statusCode: 409,
-  code: 'conflict',
-  message,
-  error, // optional error
-  target, // optional target
-});
-
-// Add additional errors to the error
-e.add({
-  code = 'error',
-  message = 'unxepected_error',
-  target, // optional target
-  error // optional error object
-})
-```
-
 ### Basic
 
 All basic Apis take the following three ***optional*** arguments: 
@@ -109,6 +84,31 @@ notFound();
 requestEntityTooLarge();
 unAuthorized();
 unsupportedMediaType();
+```
+
+### Raw
+
+The raw API is only necessary in circumstances where the [Basic](#basic) are not sufficient.
+
+```javascript
+ const { ApiError } = require('wcp-errors');
+
+// Manually create a new API error
+const e = new ApiError({
+  statusCode: 409,
+  code: 'conflict',
+  message,
+  error, // optional error
+  target, // optional target
+});
+
+// Add additional errors to the error
+e.add({
+  code = 'error',
+  message = 'unxepected_error',
+  target, // optional target
+  error // optional error object
+})
 ```
 
 ## TODO
