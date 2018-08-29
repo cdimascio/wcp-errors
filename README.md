@@ -34,6 +34,17 @@ app.get('/bad_request', function(req, res, next) {
   );
 });
 
+app.get('/multiple_errors', function(req, res, next) {
+  next(
+    badRequest({
+      message: 'Eek! A bad request',
+    }).add({
+      code: 'bad_request',
+      message: ':-(',
+    })
+  );
+});
+
 // Throw! example
 app.get('/throws', function(req, res, next) {
   throw new Error('Oh noes!');
@@ -59,6 +70,7 @@ Open a browser and run
 
 - [http://localhost:3000/not_found](http://localhost:3000/not_found)
 - [http://localhost:3000/bad_request](http://localhost:3000/bad_request)
+- [http://localhost:3000/multiple_errors](http://localhost:3000/multiple_errors)
 - [http://localhost:3000/throws](http://localhost:3000/throws)
 
 ## APIs
@@ -90,7 +102,7 @@ The raw API is only necessary when multiple errors are to be returned in the wcp
 
 ### Basic
 
-All basic Apis take the following three ***optional*** arguments: 
+All basic Apis take the following three **_optional_** arguments:
 
 - `message`: a string describing the error
 - `error`: an `Error` object
@@ -112,6 +124,7 @@ unsupportedMediaType();
 ```
 
 ## TODO
+
 Create dedicated Express middleware, such that a user does not have to write the fallback error handler middleware.
 
 ex:
