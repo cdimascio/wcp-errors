@@ -93,8 +93,8 @@ Optionally, add additional errors to a wcp error
 const br = badRequest();
 
 br.add({
-  code = 'validation_error',
-  message = 'last name required.',
+  code = 'validation_error', // optional
+  message = 'last name required.', // optional
   target, // optional target
   error // optional error object
 })
