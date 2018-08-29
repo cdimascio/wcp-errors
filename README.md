@@ -86,6 +86,20 @@ unAuthorized();
 unsupportedMediaType();
 ```
 
+Optionally, add additional errors to a wcp error
+
+```javascript
+// Add additional errors to the error
+const br = badRequest();
+
+br.add({
+  code = 'validation_error',
+  message = 'last name required.',
+  target, // optional target
+  error // optional error object
+})
+```
+
 ### Raw
 
 The raw API is only necessary in circumstances where the [Basic](#basic) are not sufficient.
