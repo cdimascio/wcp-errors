@@ -65,7 +65,7 @@ app.use(function(err, req, res, next) {
 - `npm install`
 - `npm start`
 
-Open a browser and run
+Open a browser and try:
 
 - [http://localhost:3000/not_found](http://localhost:3000/not_found)
 - [http://localhost:3000/bad_request](http://localhost:3000/bad_request)
