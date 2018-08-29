@@ -91,12 +91,14 @@ br.add({
   message,
   error, <span class="hljs-comment">// optional error</span>
   target, <span class="hljs-comment">// optional target</span>
-});
-
-<span class="hljs-comment">// Add additional errors to the error</span>
-e.add({
+}).add({
   code = <span class="hljs-string">'error'</span>, <span class="hljs-comment">// optional</span>
-  message = <span class="hljs-string">'unxepected_error'</span>, <span class="hljs-comment">// optional</span>
+  message = <span class="hljs-string">'unxepected error 1'</span>, <span class="hljs-comment">// optional</span>
+  target, <span class="hljs-comment">// optional target</span>
+  error <span class="hljs-comment">// optional error object</span>
+}).add({
+  code = <span class="hljs-string">'error'</span>, <span class="hljs-comment">// optional</span>
+  message = <span class="hljs-string">'unxepected error 2'</span>, <span class="hljs-comment">// optional</span>
   target, <span class="hljs-comment">// optional target</span>
   error <span class="hljs-comment">// optional error object</span>
 })</pre><h2>TODO</h2>
