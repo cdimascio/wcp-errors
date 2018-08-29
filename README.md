@@ -2,25 +2,10 @@
 
 Package for normalizing api errors using the following format:
 
-*(work in progress)*
-
-```json
-{
-  "trace": "dcb12022-ab1c-11e8-98d0-529269fb1459",
-  "errors": [
-    {
-      "code": "bad_request",
-      "message": "The `first_name` field is required.",
-      "target": {
-        "type": "field",
-        "name": "first_name"
-      }
-    }
-  ]
-}
-```
+![](https://github.com/cdimascio/wcp-errors/blob/master/assets/error.png?raw=true)
 
 ## Install
+
 ```shell
 npm install wcp-errors
 ```
@@ -32,20 +17,49 @@ const { notFound } = require('wcp-errors');
 throw badRequest('first name is required.');
 ```
 
-## Example
-This following example describes how one might return a `404` not found via an ExpressJs request handler.
+## Examples (ExpressJS)
 
-```JavaScript
-const { notFound } = require('wcp-errors');
+```javascript
+app.get('/not_found', function(req, res, next) {
+  next(notFound());
+});
 
-app.get('/user/:id', (req, res, next) => {
-	FindStuff.byId(req.params.id)
-	  .then(r => {
-	    if (r) res.json(r);
-	    else res.json(notFound());
-	  });
+// Bad request example
+app.get('/bad_request', function(req, res, next) {
+  next(
+    badRequest('Eek! A bad request', new Error(), {
+      type: 'parameter',
+      name: 'Eek',
+    })
+  );
+});
+
+// Throw! example
+app.get('/throws', function(req, res, next) {
+  throw new Error('Oh noes!');
+});
+
+// Error handler
+app.use(function(err, req, res, next) {
+  if (err instanceof ApiError) {
+    res.status(err.statusCode).json(err);
+  } else {
+    res.status(500).json(internalServerError(err.message, err));
+  }
 });
 ```
+
+## Run the examples
+
+- `cd example/express`
+- `npm install`
+- `npm start`
+
+Open a browser and run
+
+- [http://localhost:3000/not_found](http://localhost:3000/not_found)
+- [http://localhost:3000/bad_request](http://localhost:3000/bad_request)
+- [http://localhost:3000/throws](http://localhost:3000/throws)
 
 ## APIs
 
@@ -64,49 +78,54 @@ The raw API is only necessary when multiple errors are to be returned in the wcp
     error, // optional error
     target, // optional target
   });
-  
+
   // Add additional errors to the error
-  e.add({ 
-  	code = 'error', 
-  	message = 'unxepected_error', 
-  	target, // optional target 
+  e.add({
+  	code = 'error',
+  	message = 'unxepected_error',
+  	target, // optional target
   	error // optional error object
   })
 ```
 
 ### Basic
 
-All basic Apis take the following three optional arguments: `message, error, target`
+All basic Apis take the following three ***optional*** arguments: 
 
-ex:
-
-```javascript
-const e = new Error();
-badRequest({
-	message: 'first name is missing', 
-	error: e,
-	target: {
-		type: 'paramater',
-		name: 'first name'
-	}
-});
-```
+- `message`: a string describing the error
+- `error`: an `Error` object
+- `target`: an object with shape `{ type, name }`
 
 ### All APIs
 
 ```javascript
-badRequest()
-conflict()
-forbidden()
-internalServerError()
-methodNotAllowed()
-notAcceptable()
-notFound()
-requestEntityTooLarge()
-unAuthorized()
-unsupportedMediaType()
+badRequest();
+conflict();
+forbidden();
+internalServerError();
+methodNotAllowed();
+notAcceptable();
+notFound();
+requestEntityTooLarge();
+unAuthorized();
+unsupportedMediaType();
 ```
 
+## TODO
+Create dedicated Express middleware, such that a user does not have to write the fallback error handler middleware.
 
-## License 
+ex:
+
+```
+app.use(function(err, req, res, next) {
+  if (err instanceof ApiError) {
+    res.status(err.statusCode).json(err);
+  } else {
+    res.status(500).json(internalServerError(err.message, err));
+  }
+});
+```
+
+## License
+
 MIT
