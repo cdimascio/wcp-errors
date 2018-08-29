@@ -1,3 +1,3 @@
 const e = require('../index');
-// do something useful
-console.log(e)
+// TODO Yikes!!! Implement some tests
+console.log(e);
