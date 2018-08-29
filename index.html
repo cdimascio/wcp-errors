@@ -21,9 +21,7 @@ app.get(<span class="hljs-string">'/bad_request'</span>, <span class="hljs-funct
 
 app.get(<span class="hljs-string">'/multiple_errors'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) </span>{
   next(
-    badRequest({
-      <span class="hljs-attr">message</span>: <span class="hljs-string">'Eek! A bad request'</span>,
-    }).add({
+    badRequest(<span class="hljs-string">'Eek! A bad request'</span>).add({
       <span class="hljs-attr">code</span>: <span class="hljs-string">'bad_request'</span>,
       <span class="hljs-attr">message</span>: <span class="hljs-string">':-('</span>,
     })
