@@ -67,8 +67,8 @@ Open a browser and run
 
 The raw API is only necessary when multiple errors are to be returned in the wcp error response. For scenarios where a single error is to be returned, use the [Basic](#basic) Apis.
 
-```
-	const { ApiError } = require('wcp-errors');
+```javascript
+   const { ApiError } = require('wcp-errors');
 
   // Manually create a new API error
   const e = new ApiError({
@@ -116,7 +116,7 @@ Create dedicated Express middleware, such that a user does not have to write the
 
 ex:
 
-```
+```javascript
 app.use(function(err, req, res, next) {
   if (err instanceof ApiError) {
     res.status(err.statusCode).json(err);
