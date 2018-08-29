@@ -118,8 +118,8 @@ const e = new ApiError({
 
 // Add additional errors to the error
 e.add({
-  code = 'error',
-  message = 'unxepected_error',
+  code = 'error', // optional
+  message = 'unxepected_error', // optional
   target, // optional target
   error // optional error object
 })
