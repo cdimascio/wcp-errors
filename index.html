@@ -19,6 +19,17 @@ app.get(<span class="hljs-string">'/bad_request'</span>, <span class="hljs-funct
   );
 });
 
+app.get(<span class="hljs-string">'/multiple_errors'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) </span>{
+  next(
+    badRequest({
+      <span class="hljs-attr">message</span>: <span class="hljs-string">'Eek! A bad request'</span>,
+    }).add({
+      <span class="hljs-attr">code</span>: <span class="hljs-string">'bad_request'</span>,
+      <span class="hljs-attr">message</span>: <span class="hljs-string">':-('</span>,
+    })
+  );
+});
+
 <span class="hljs-comment">// Throw! example</span>
 app.get(<span class="hljs-string">'/throws'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) </span>{
   <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Oh noes!'</span>);
@@ -41,11 +52,12 @@ app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<
 <ul>
 <li><a href="http://localhost:3000/not_found">http://localhost:3000/not_found</a></li>
 <li><a href="http://localhost:3000/bad_request">http://localhost:3000/bad_request</a></li>
+<li><a href="http://localhost:3000/multiple_errors">http://localhost:3000/multiple_errors</a></li>
 <li><a href="http://localhost:3000/throws">http://localhost:3000/throws</a></li>
 </ul>
 <h2>APIs</h2>
 <h3>Basic</h3>
-<p>All basic Apis take the following three <strong><em>optional</em></strong> arguments: </p>
+<p>All basic Apis take the following three <strong><em>optional</em></strong> arguments:</p>
 <ul>
 <li><code>message</code>: a string describing the error</li>
 <li><code>error</code>: an <code>Error</code> object</li>
