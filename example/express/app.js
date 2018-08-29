@@ -25,6 +25,17 @@ app.get('/bad_request', function(req, res, next) {
   );
 });
 
+app.get('/multiple_errors', function(req, res, next) {
+  next(
+    badRequest({
+      message: 'Eek! A bad request',
+    }).add({
+      code: 'bad_request',
+      message: ':-(',
+    })
+  );
+});
+
 // Throw! example
 app.get('/throws', function(req, res, next) {
   throw new Error('Oh noes!');
