@@ -14,7 +14,7 @@ npm install wcp-errors
 
 ```JavaScript
 const { notFound } = require('wcp-errors');
-throw badRequest('first name is required.');
+badRequest('first name is required.');
 ```
 
 ## Examples (ExpressJS)
@@ -75,31 +75,6 @@ Open a browser and run
 
 ## APIs
 
-### Raw
-
-The raw API is only necessary when multiple errors are to be returned in the wcp error response. For scenarios where a single error is to be returned, use the [Basic](#basic) Apis.
-
-```
-	const { ApiError } = require('wcp-errors');
-
-  // Manually create a new API error
-  const e = new ApiError({
-    statusCode: 409,
-    code: 'conflict',
-    message,
-    error, // optional error
-    target, // optional target
-  });
-
-  // Add additional errors to the error
-  e.add({
-  	code = 'error',
-  	message = 'unxepected_error',
-  	target, // optional target
-  	error // optional error object
-  })
-```
-
 ### Basic
 
 All basic Apis take the following three **_optional_** arguments:
@@ -123,13 +98,52 @@ unAuthorized();
 unsupportedMediaType();
 ```
 
+Optionally, add additional errors to a wcp error
+
+```javascript
+// Add additional errors to the error
+const br = badRequest();
+
+br.add({
+  code = 'validation_error', // optional
+  message = 'last name required.', // optional
+  target, // optional target
+  error // optional error object
+})
+```
+
+### Raw
+
+The raw API is only necessary in circumstances where the [Basic](#basic) are not sufficient.
+
+```javascript
+ const { ApiError } = require('wcp-errors');
+
+// Manually create a new API error
+const e = new ApiError({
+  statusCode: 409,
+  code: 'conflict',
+  message,
+  error, // optional error
+  target, // optional target
+});
+
+// Add additional errors to the error
+e.add({
+  code = 'error', // optional
+  message = 'unxepected_error', // optional
+  target, // optional target
+  error // optional error object
+})
+```
+
 ## TODO
 
 Create dedicated Express middleware, such that a user does not have to write the fallback error handler middleware.
 
 ex:
 
-```
+```javascript
 app.use(function(err, req, res, next) {
   if (err instanceof ApiError) {
     res.status(err.statusCode).json(err);
