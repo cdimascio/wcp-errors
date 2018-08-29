@@ -100,10 +100,8 @@ unsupportedMediaType();
 Optionally, add additional errors to a wcp error
 
 ```javascript
-// Add additional errors to the error
-const br = badRequest();
-
-br.add({
+// Create an error and add additional error(s) to the wcp error
+badRequest().add({
   code = 'validation_error', // optional
   message = 'last name required.', // optional
   target, // optional target
