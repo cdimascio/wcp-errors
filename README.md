@@ -14,7 +14,7 @@ npm install wcp-errors
 
 ```JavaScript
 const { notFound } = require('wcp-errors');
-throw badRequest('first name is required.');
+badRequest('first name is required.');
 ```
 
 ## Examples (ExpressJS)
