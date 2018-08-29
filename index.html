@@ -4,7 +4,7 @@
 <h2>Install</h2>
 <pre>npm install wcp-errors</pre><h2>Usage</h2>
 <pre><span class="hljs-keyword">const</span> { notFound } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'wcp-errors'</span>);
-<span class="hljs-keyword">throw</span> badRequest(<span class="hljs-string">'first name is required.'</span>);</pre><h2>Examples (ExpressJS)</h2>
+badRequest(<span class="hljs-string">'first name is required.'</span>);</pre><h2>Examples (ExpressJS)</h2>
 <pre>app.get(<span class="hljs-string">'/not_found'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, next</span>) </span>{
   next(notFound());
 });
