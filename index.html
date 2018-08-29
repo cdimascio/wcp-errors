@@ -104,7 +104,8 @@ badRequest().add({
 <li>Create basic api functions for all http errors</li>
 <li>Normalize basic apis with <code>add</code> api</li>
 <li><p>Create dedicated Express middleware, such that a user does not have to write the fallback error handler middleware.</p>
-<p>ex: (currently user's must create a fallback middleware similiar to the following)</p>
+<p><strong>ex:</strong></p>
+<p><em>currently user's must create a fallback middleware similiar to the following</em></p>
 <pre>app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, req, res, next</span>) </span>{
   <span class="hljs-keyword">if</span> (err <span class="hljs-keyword">instanceof</span> ApiError) {
     res.status(err.statusCode).json(err);
