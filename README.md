@@ -142,17 +142,17 @@ const e = new ApiError({
 - Normalize basic apis with `add` api
 - Create dedicated Express middleware, such that a user does not have to write the fallback error handler middleware.
 
-ex: (currently user's must create a fallback middleware similiar to the following)
+  ex: (currently user's must create a fallback middleware similiar to the following)
 
-```javascript
-app.use(function(err, req, res, next) {
-  if (err instanceof ApiError) {
-    res.status(err.statusCode).json(err);
-  } else {
-    res.status(500).json(internalServerError(err.message, err));
-  }
-});
-```
+  ```javascript
+  app.use(function(err, req, res, next) {
+    if (err instanceof ApiError) {
+      res.status(err.statusCode).json(err);
+    } else {
+      res.status(500).json(internalServerError(err.message, err));
+    }
+  });
+  ```
 
 ## Contributers
 
