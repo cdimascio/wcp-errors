@@ -46,24 +46,24 @@ app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<
 <h2>APIs</h2>
 <h3>Raw</h3>
 <p>The raw API is only necessary when multiple errors are to be returned in the wcp error response. For scenarios where a single error is to be returned, use the <a href="#basic">Basic</a> Apis.</p>
-<pre>   <span class="hljs-keyword">const</span> { ApiError } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'wcp-errors'</span>);
+<pre> <span class="hljs-keyword">const</span> { ApiError } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'wcp-errors'</span>);
 
-  <span class="hljs-comment">// Manually create a new API error</span>
-  <span class="hljs-keyword">const</span> e = <span class="hljs-keyword">new</span> ApiError({
-    <span class="hljs-attr">statusCode</span>: <span class="hljs-number">409</span>,
-    <span class="hljs-attr">code</span>: <span class="hljs-string">'conflict'</span>,
-    message,
-    error, <span class="hljs-comment">// optional error</span>
-    target, <span class="hljs-comment">// optional target</span>
-  });
+<span class="hljs-comment">// Manually create a new API error</span>
+<span class="hljs-keyword">const</span> e = <span class="hljs-keyword">new</span> ApiError({
+  <span class="hljs-attr">statusCode</span>: <span class="hljs-number">409</span>,
+  <span class="hljs-attr">code</span>: <span class="hljs-string">'conflict'</span>,
+  message,
+  error, <span class="hljs-comment">// optional error</span>
+  target, <span class="hljs-comment">// optional target</span>
+});
 
-  <span class="hljs-comment">// Add additional errors to the error</span>
-  e.add({
-      code = <span class="hljs-string">'error'</span>,
-      message = <span class="hljs-string">'unxepected_error'</span>,
-      target, <span class="hljs-comment">// optional target</span>
-      error <span class="hljs-comment">// optional error object</span>
-  })</pre><h3>Basic</h3>
+<span class="hljs-comment">// Add additional errors to the error</span>
+e.add({
+  code = <span class="hljs-string">'error'</span>,
+  message = <span class="hljs-string">'unxepected_error'</span>,
+  target, <span class="hljs-comment">// optional target</span>
+  error <span class="hljs-comment">// optional error object</span>
+})</pre><h3>Basic</h3>
 <p>All basic Apis take the following three <strong><em>optional</em></strong> arguments: </p>
 <ul>
 <li><code>message</code>: a string describing the error</li>
