@@ -36,9 +36,7 @@ app.get('/bad_request', function(req, res, next) {
 
 app.get('/multiple_errors', function(req, res, next) {
   next(
-    badRequest({
-      message: 'Eek! A bad request',
-    }).add({
+    badRequest('Eek! A bad request').add({
       code: 'bad_request',
       message: ':-(',
     })
