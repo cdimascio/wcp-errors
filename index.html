@@ -44,8 +44,25 @@ app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<
 <li><a href="http://localhost:3000/throws">http://localhost:3000/throws</a></li>
 </ul>
 <h2>APIs</h2>
-<h3>Raw</h3>
-<p>The raw API is only necessary when multiple errors are to be returned in the wcp error response. For scenarios where a single error is to be returned, use the <a href="#basic">Basic</a> Apis.</p>
+<h3>Basic</h3>
+<p>All basic Apis take the following three <strong><em>optional</em></strong> arguments: </p>
+<ul>
+<li><code>message</code>: a string describing the error</li>
+<li><code>error</code>: an <code>Error</code> object</li>
+<li><code>target</code>: an object with shape <code>{ type, name }</code></li>
+</ul>
+<h3>All APIs</h3>
+<pre>badRequest();
+conflict();
+forbidden();
+internalServerError();
+methodNotAllowed();
+notAcceptable();
+notFound();
+requestEntityTooLarge();
+unAuthorized();
+unsupportedMediaType();</pre><h3>Raw</h3>
+<p>The raw API is only necessary in circumstances where the <a href="#basic">Basic</a> are not sufficient.</p>
 <pre> <span class="hljs-keyword">const</span> { ApiError } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'wcp-errors'</span>);
 
 <span class="hljs-comment">// Manually create a new API error</span>
@@ -63,24 +80,7 @@ e.add({
   message = <span class="hljs-string">'unxepected_error'</span>,
   target, <span class="hljs-comment">// optional target</span>
   error <span class="hljs-comment">// optional error object</span>
-})</pre><h3>Basic</h3>
-<p>All basic Apis take the following three <strong><em>optional</em></strong> arguments: </p>
-<ul>
-<li><code>message</code>: a string describing the error</li>
-<li><code>error</code>: an <code>Error</code> object</li>
-<li><code>target</code>: an object with shape <code>{ type, name }</code></li>
-</ul>
-<h3>All APIs</h3>
-<pre>badRequest();
-conflict();
-forbidden();
-internalServerError();
-methodNotAllowed();
-notAcceptable();
-notFound();
-requestEntityTooLarge();
-unAuthorized();
-unsupportedMediaType();</pre><h2>TODO</h2>
+})</pre><h2>TODO</h2>
 <p>Create dedicated Express middleware, such that a user does not have to write the fallback error handler middleware.</p>
 <p>ex:</p>
 <pre>app.use(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, req, res, next</span>) </span>{
