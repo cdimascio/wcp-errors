@@ -66,8 +66,8 @@ unsupportedMediaType();</pre><p>Optionally, add additional errors to a wcp error
 <span class="hljs-keyword">const</span> br = badRequest();
 
 br.add({
-  code = <span class="hljs-string">'validation_error'</span>,
-  message = <span class="hljs-string">'last name required.'</span>,
+  code = <span class="hljs-string">'validation_error'</span>, <span class="hljs-comment">// optional</span>
+  message = <span class="hljs-string">'last name required.'</span>, <span class="hljs-comment">// optional</span>
   target, <span class="hljs-comment">// optional target</span>
   error <span class="hljs-comment">// optional error object</span>
 })</pre><h3>Raw</h3>
